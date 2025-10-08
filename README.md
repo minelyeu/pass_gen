@@ -45,7 +45,9 @@ python app.py
 **📁 Структура проекта**
 
 password-generator-flask/
+
 │
+
 ├── app.py     
 
 ├── templates/
