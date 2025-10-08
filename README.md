@@ -47,10 +47,15 @@ python app.py
 password-generator-flask/
 │
 ├── app.py     
+
 ├── templates/
+
 │   └── index.html  
+
 ├── static/
-│   └── style.css   
+
+│   └── style.css 
+
 └── README.md 
 
 **🧠 Пример использования**
