@@ -11,6 +11,9 @@
  
  • Настройка уровня сложности:
  
+ <img width="437" height="519" alt="1" src="https://github.com/user-attachments/assets/8b9eb626-467c-4ce9-a9a7-e4dd9831a82d" />
+
+ 
  • low — только строчные буквы
  
  • medium — строчные и прописные буквы
