@@ -3,37 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Генератор паролей</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Генератор паролей</h1>
-    <p>Вы вошли как: <b>{{ user }}</b> | <a href="{{ url_for('logout') }}">Выйти</a></p>
+    <p>Вы вошли как: {{ user }}</p>
+    <a href="{{ url_for('history') }}">Посмотреть историю</a> |
+    <a href="{{ url_for('logout') }}">Выйти</a>
+    <hr>
 
     <form method="post">
-        <label>Длина пароля:</label>
-        <input type="number" name="length" value="12" required><br><br>
+        <label>Длина пароля:</label><br>
+        <input type="number" name="length" required><br><br>
 
-        <label>Количество паролей:</label>
-        <input type="number" name="count" value="1" required><br><br>
+        <label>Количество:</label><br>
+        <input type="number" name="count" required><br><br>
 
-        <label>Сложность:</label>
+        <label>Сложность:</label><br>
         <select name="complexity">
-            <option value="low">Простой</option>
-            <option value="medium">Средний</option>
-            <option value="high">Сложный</option>
-            <option value="max">Максимум</option>
+            <option value="low">Низкая</option>
+            <option value="medium">Средняя</option>
+            <option value="high">Высокая</option>
+            <option value="max">Максимальная</option>
         </select><br><br>
 
-        <button type="submit">Сгенерировать</button>
+        <button type="submit" name="generate">Сгенерировать</button>
     </form>
 
     {% if passwords %}
-        <h2>Результат:</h2>
-        <ul>
+        <hr>
+        <h3>Выберите сайт и сохраните нужные пароли:</h3>
+        <form method="post">
+            <label>Сайт (ввести):</label><br>
+            <input type="text" name="site" placeholder="ВК, Instagram..." required><br><br>
+
             {% for p in passwords %}
-                <li><code>{{ p }}</code></li>
+                <input type="checkbox" name="selected_passwords" value="{{ p }}"> {{ p }}<br>
             {% endfor %}
-        </ul>
+
+            <br><button type="submit" name="save">Сохранить выбранные</button>
+        </form>
+    {% endif %}
+
+    {% if message %}
+        <p style="color:green">{{ message }}</p>
     {% endif %}
 </body>
 </html>
