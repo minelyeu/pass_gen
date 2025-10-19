@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Авторизация</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 <body>
-    <h1>Вход</h1>
-    <form method="post">
-        <label>Логин:</label><br>
-        <input type="text" name="login" required><br><br>
+    <div class="page">
+        <h1>Вход</h1>
+        <form method="post">
+            <label>Логин:</label><br>
+            <input type="text" name="login" required><br><br>
 
-        <label>Пароль:</label><br>
-        <input type="password" name="password" required><br><br>
+            <label>Пароль:</label><br>
+            <input type="password" name="password" required><br><br>
 
-        <button type="submit">Войти</button>
-    </form>
+            <button type="submit">Войти</button>
+        </form>
 
-    {% if error %}
-        <p style="color:red">{{ error }}</p>
-    {% endif %}
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
 </body>
 </html>

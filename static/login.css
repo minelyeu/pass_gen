@@ -1,0 +1,27 @@
+/* login.css — минимальные стили для страницы входа */
+html, body { height: 100%; }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7ff;
+}
+
+.page {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px 24px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+
+h1 { margin: 0 0 10px 0; }
+label { display: inline-block; margin: 6px 0 2px; }
+input, button { padding: 6px 8px; margin-top: 4px; }
+button { cursor: pointer; }
+.error { color: red; }
+

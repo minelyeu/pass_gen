@@ -9,12 +9,9 @@ app.secret_key = 'supersecretkey'
 USERS_FILE = "users.txt"
 HISTORY_DIR = "user_history"
 
-# создаём папку для истории, если её нет
 if not os.path.exists(HISTORY_DIR):
     os.makedirs(HISTORY_DIR)
 
-
-# --- функции для работы с пользователями ---
 def load_users():
     users = []
     if os.path.exists(USERS_FILE):

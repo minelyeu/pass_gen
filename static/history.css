@@ -1,0 +1,26 @@
+/* history.css — минимальные стили для страницы истории */
+html, body { height: 100%; }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff8f2;
+}
+
+.page {
+    width: 100%;
+    max-width: 720px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px 24px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+
+h1 { margin-bottom: 10px; }
+a { margin-right: 10px; }
+hr { margin: 16px 0; }
+p { margin: 6px 0; }
+

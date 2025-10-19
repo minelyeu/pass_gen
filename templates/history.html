@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>История паролей</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='history.css') }}">
 </head>
 <body>
-    <h1>История для {{ user }}</h1>
-    <a href="{{ url_for('index') }}">Назад</a> | 
-    <a href="{{ url_for('logout') }}">Выйти</a>
-    <hr>
+    <div class="page">
+        <h1>История для {{ user }}</h1>
+        <a href="{{ url_for('index') }}">Назад</a> | 
+        <a href="{{ url_for('logout') }}">Выйти</a>
+        <hr>
 
-    {% for line in history %}
-        <p>{{ line }}</p>
-    {% endfor %}
+        {% for line in history %}
+            <p>{{ line }}</p>
+        {% endfor %}
+    </div>
 </body>
 </html>

@@ -1,0 +1,29 @@
+/* index.css — минимальные стили для страницы генератора */
+html, body { height: 100%; }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f5ff; /* мягкий фоновый цвет */
+}
+
+.page {
+    width: 100%;
+    max-width: 520px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px 24px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+
+h1 { margin: 0 0 10px 0; }
+label { display: inline-block; margin: 6px 0 2px; }
+input, select, button { padding: 6px 8px; margin-top: 4px; }
+button { cursor: pointer; }
+a { margin-right: 10px; }
+hr { margin: 16px 0; }
+.message { color: green; }
+

@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Генератор паролей</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-    <h1>Генератор паролей</h1>
-    <p>Вы вошли как: {{ user }}</p>
-    <a href="{{ url_for('history') }}">Посмотреть историю</a> |
-    <a href="{{ url_for('logout') }}">Выйти</a>
-    <hr>
+    <div class="page">
+        <h1>Генератор паролей</h1>
+        <p>Вы вошли как: {{ user }}</p>
+        <a href="{{ url_for('history') }}">Посмотреть историю</a> |
+        <a href="{{ url_for('logout') }}">Выйти</a>
+        <hr>
 
     <form method="post">
         <label>Длина пароля:</label><br>
@@ -47,5 +49,6 @@
     {% if message %}
         <p style="color:green">{{ message }}</p>
     {% endif %}
+    </div>
 </body>
 </html>
