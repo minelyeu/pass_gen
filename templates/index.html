@@ -8,47 +8,61 @@
 <body>
     <div class="page">
         <h1>Генератор паролей</h1>
-        <p>Вы вошли как: {{ user }}</p>
-        <a href="{{ url_for('history') }}">Посмотреть историю</a> |
-        <a href="{{ url_for('logout') }}">Выйти</a>
+        <p>Вы вошли как: <strong>{{ user }}</strong></p>
+
+        <div class="nav">
+            <a href="{{ url_for('history') }}">История</a> |
+            <a href="{{ url_for('logout') }}">Выйти</a>
+        </div>
+
         <hr>
 
-    <form method="post">
-        <label>Длина пароля:</label><br>
-        <input type="number" name="length" required><br><br>
-
-        <label>Количество:</label><br>
-        <input type="number" name="count" required><br><br>
-
-        <label>Сложность:</label><br>
-        <select name="complexity">
-            <option value="low">Низкая</option>
-            <option value="medium">Средняя</option>
-            <option value="high">Высокая</option>
-            <option value="max">Максимальная</option>
-        </select><br><br>
-
-        <button type="submit" name="generate">Сгенерировать</button>
-    </form>
-
-    {% if passwords %}
-        <hr>
-        <h3>Выберите сайт и сохраните нужные пароли:</h3>
+        <!-- Форма генерации -->
         <form method="post">
-            <label>Сайт (ввести):</label><br>
-            <input type="text" name="site" placeholder="ВК, Instagram..." required><br><br>
+            <h3>Параметры генерации</h3>
 
-            {% for p in passwords %}
-                <input type="checkbox" name="selected_passwords" value="{{ p }}"> {{ p }}<br>
-            {% endfor %}
+            <label>Длина пароля:</label><br>
+            <input type="number" name="length" min="4" max="64" value="12" required><br><br>
 
-            <br><button type="submit" name="save">Сохранить выбранные</button>
+            <label>Количество паролей:</label><br>
+            <input type="number" name="count" min="1" max="20" value="3" required><br><br>
+
+            <label>Сложность:</label><br>
+            <select name="complexity">
+                <option value="low">Низкая</option>
+                <option value="medium">Средняя</option>
+                <option value="high">Высокая</option>
+                <option value="max">Максимальная</option>
+            </select><br><br>
+
+            <button type="submit" name="generate">Сгенерировать</button>
         </form>
-    {% endif %}
 
-    {% if message %}
-        <p style="color:green">{{ message }}</p>
-    {% endif %}
+        {% if passwords %}
+            <hr>
+            <h3>Сгенерированные пароли:</h3>
+            <form method="post">
+                <label>Сайт:</label><br>
+                <input type="text" name="site" placeholder="Например: Instagram" required><br><br>
+
+                <label>Логин:</label><br>
+                <input type="text" name="login" placeholder="Ваш логин" required><br><br>
+
+                <h4>Выберите пароли для сохранения:</h4>
+                {% for p in passwords %}
+                    <div class="password-item">
+                        <input type="checkbox" name="selected_passwords" value="{{ p }}">
+                        {{ p }}
+                    </div>
+                {% endfor %}
+                <br>
+                <button type="submit" name="save">Сохранить выбранные</button>
+            </form>
+        {% endif %}
+
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
     </div>
 </body>
 </html>

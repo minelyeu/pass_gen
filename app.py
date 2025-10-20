@@ -41,8 +41,6 @@ def check_user(login, password):
             return True
     return False
 
-
-# --- генерация паролей ---
 def generate_password(length, complexity):
     if complexity == "low":
         chars = string.ascii_lowercase
@@ -54,8 +52,6 @@ def generate_password(length, complexity):
         chars = string.ascii_letters + string.digits + string.punctuation
     return ''.join(random.choice(chars) for _ in range(length))
 
-
-# --- маршруты ---
 @app.route('/', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -81,28 +77,31 @@ def index():
     passwords = []
 
     if request.method == 'POST':
-        # если нажата кнопка "Сгенерировать"
+        # Если нажата кнопка "Сгенерировать"
         if 'generate' in request.form:
             try:
                 length = int(request.form['length'])
                 count = int(request.form['count'])
                 complexity = request.form['complexity']
 
+                # просто генерируем пароли — без site/login
                 for _ in range(count):
-                    passwords.append(generate_password(length, complexity))
+                    pwd = generate_password(length, complexity)
+                    passwords.append(pwd)
 
             except Exception as e:
                 passwords = [f"Ошибка: {e}"]
 
-        # если нажата кнопка "Сохранить"
+        # Если нажата кнопка "Сохранить"
         elif 'save' in request.form:
-            site = request.form['site']
+            site = request.form.get('site', '')
+            login_name = request.form.get('login', '')
             selected = request.form.getlist('selected_passwords')
 
             history_path = os.path.join(HISTORY_DIR, f"history_{user}.txt")
             with open(history_path, "a", encoding="utf-8") as f:
                 for pwd in selected:
-                    f.write(f"site: {site} | user: {user} | password: {pwd}\n")
+                    f.write(f"site: {site} | login: {login_name} | password: {pwd}\n")
 
             return render_template('index.html', passwords=[], user=user, message="Сохранено!")
 
@@ -124,6 +123,20 @@ def history():
         lines = ["История пуста."]
 
     return render_template('history.html', history=lines, user=user)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        login = request.form['login']
+        password = request.form['password']
+
+        if check_user(login, password):
+            session['user'] = login
+            return redirect(url_for('index'))
+        else:
+            return render_template('login.html', error='Неверный логин или пароль')
+
+    return render_template('login.html')
 
 
 @app.route('/logout')
